@@ -1,0 +1,36 @@
+[user]
+	name = Duane Murphy
+	email = duane@silvertailsystems.com
+[alias]
+    up = pull
+	st = status -s
+    di = diff
+	co = checkout
+    ci = commit
+    br = branch
+    sta = stash
+	stsh = stash
+	new-remote = "!newremote() { git checkout -b $1 && git push origin $1 && git branch --set-upstream $1 origin/$1 ; }; newremote \"$@\""
+	pretty = log --decorate --graph
+	linelog = log --oneline --decorate --graph
+	ll = log --oneline --decorate --graph
+	rm-remote = push origin :
+	amend = commit -C HEAD --amend
+    fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+    squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+    fetch-all = "!fetchall() { for repo in $(git remote); do echo "Fetching $repo"; git fetch $repo; done; }; fetchall"
+
+[core]
+    pager = less
+
+[color]
+	status = auto
+	branch = auto
+[branch]
+	autosetuprebase = always
+[push]
+	default = tracking
+[diff]
+	tool = kompare
+[rerere]
+	enabled = 1

@@ -1,0 +1,37 @@
+#! /bin/bash
+# set -x
+#
+# Several environmental changes need to be set
+# * Set the remote_user name to the name of the user on the target system
+# *
+# * bbedit needs to be on the path for the target system. This may not
+#   be the case as the bbedit command line tools are installed in /usr/local/bin
+#   which is not used for non-interactive shells. Add /usr/local/bin to the
+#   path in your .bashrc file.
+#
+#
+
+remote_user=duane
+
+#echo "${1}"
+#echo "${SSH_CLIENT}"
+#echo "${SSH_CLIENT:0:$(expr "${SSH_CLIENT}" : '[^ ]*')}"
+
+file1="${1}"
+
+if [ ! -z ${file1} ]; then
+    if [ ${file1:0:1} != "/" ]; then
+        file1="${PWD}/${file1}"
+    fi
+fi
+
+REMOTEHOST="${SSH_CLIENT:0:$(expr "${SSH_CLIENT}" : '[^ ]*')}"
+LOCALHOST="$(hostname -f)"
+
+#echo $REMOTEHOST
+#echo $file1
+#echo $LOCALHOST
+#echo ssh duane@${REMOTEHOST} bbedit --wait --resume "sftp://${USER}@${LOCALHOST}/${file1}"
+
+ssh -p 22 ${remote_user}@${REMOTEHOST} bbedit --wait --resume "sftp://${USER}@${LOCALHOST}/${file1}"
+

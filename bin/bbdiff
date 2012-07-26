@@ -1,0 +1,22 @@
+#! /bin/bash
+
+file1="${1}"
+file2="${2}"
+
+if [ ${file1:0:1} != "/" ]; then
+file1="${PWD}/${file1}"
+fi
+
+if [ ${file2:0:1} != "/" ]; then
+file2="${PWD}/${file2}"
+fi
+
+
+#echo "${SSH_CLIENT}"
+#echo "${SSH_CLIENT:0:$(expr "${SSH_CLIENT}" : '[^ ]*')}"
+
+REMOTEHOST="${SSH_CLIENT:0:$(expr "${SSH_CLIENT}" : '[^ ]*')}"
+LOCALHOST="$(hostname -f)"
+echo ssh duane@${REMOTEHOST} bbdiff --wait --resume "sftp://${USER}@${HOSTNAME}${file2}" "sftp://${USER}@${LOCALHOST}${file1}"
+ssh duane@${REMOTEHOST} bbdiff --wait --resume "sftp://${USER}@${LOCALHOST}${file2}" "sftp://${USER}@${LOCALHOST}${file1}"
+

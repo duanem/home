@@ -1,0 +1,2 @@
+#! /bin/bash
+tools/each.sh -s slaves /sbin/service buildslave-git restart

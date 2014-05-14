@@ -5,21 +5,15 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-#EDITOR=nano
-EDITOR=bbedit
-export EDITOR
+#export EDITOR=nano
+export EDITOR=bbedit
 
-LESS=iX
-export LESS
-
-PAGER=less
-export PAGER
+export PAGER=less
+export LESS=iX
 
 alias ll='ls -lh'
 alias more=less
 alias edit=bbedit
-alias confroot='export CONF_ROOT=$PWD/conf;echo "${CONF_ROOT}"'
-alias pythonpath='export PYTHONPATH=$PWD/python;echo "${PYTHONPATH}"'
 
 source ~/.git.completion.sh
 

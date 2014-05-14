@@ -94,6 +94,4 @@ fi
 
 # User specific environment and startup programs
 
-PATH=$PATH:$HOME/bin:$HOME/bin/tools
-
-export PATH
+export PATH=$PATH:$HOME/bin

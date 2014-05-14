@@ -1,0 +1,4 @@
+# .gitignore
+# Simple gitignore file for the home directory files.
+
+.DS_Store
